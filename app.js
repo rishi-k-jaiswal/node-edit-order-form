@@ -16,8 +16,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // GET route for the form
+const pincode = 700001;
+const address = 'abc road';
+const orderVariant = ['1: red', '2: blue', '3: green', '4: yellow', '5: black'];
+
 app.get('/', (req, res) => {
-  res.render('form');
+  // const { address = '', pincode = '', productvariant = '' } = req.query;
+  res.render('form', { address, pincode, productvariant: orderVariant });
 });
 
 app.post('/api/shipping', (req, res) => {
@@ -28,7 +33,10 @@ app.post('/api/shipping', (req, res) => {
     }
   
     // In a real app, you could save to a DB here
-    console.log('🚚 Shipping API Data:', { address, pickup, productvariant });
+    // console.log('🚚 Shipping API Data:', { address, pickup, productvariant });
+    // pincode = req.body.pincode;
+    // orderVariant.push(
+
   
     res.json({
       message: 'Shipping info received successfully!',

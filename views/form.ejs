@@ -8,24 +8,30 @@
 <body>
   <div class="form-container">
     <h2>Shipping Form</h2>
-    <form action="/submit" method="POST">
+    <form action="/submit" method="POST" id="infoForm">
+      
       <div class="form-group">
         <label for="address">Address:</label>
-        <input type="text" name="address" id="address" required />
+        <input type="text" name="address" id="address" required value="<%= address %>" />
       </div>
+
+      <!-- <div class="form-group">
+        <label for="pickup">Pickup Location:</label>
+        <input type="text" name="pickup" id="pickup" required />
+      </div> -->
 
       <div class="form-group">
         <label for="pincode">Pincode:</label>
-        <input type="text" name="pincode" id="pincode" pattern="[0-9]{6}" required />
+        <input type="text" name="pincode" id="pincode" pattern="[0-9]{6}" required value="<%= pincode %>" />
       </div>
 
       <div class="form-group">
         <label for="variant">Product Variant:</label>
         <select name="variant" id="variant" required>
           <option value="">-- Select Variant --</option>
-          <option value="Pro Lite">Pro Lite</option>
-          <option value="Pro Max">Pro Max</option>
-          <option value="Pro Ultra">Pro Ultra</option>
+          <% productvariant.forEach(function(variant) { %>
+            <option value="<%= variant %>"><%= variant %></option>
+          <% }); %>
         </select>
       </div>
 
